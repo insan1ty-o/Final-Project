@@ -4,8 +4,17 @@ body {
 
 #scratchoff {
     border: 3px solid black;
+    background-color: rgb(7, 105, 7);
+    height: 75vh;
+    width: 56vw;
     flex-direction: row;
     border-radius: 0.7vh;
+}
+
+#topnums {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
 }
 
 .col {
