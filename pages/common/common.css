@@ -1,0 +1,19 @@
+#headerbar {
+    background-color: brown;
+    height: 4.25vh;
+}
+
+body {
+    background-color: goldenrod;
+    margin: 0;
+}
+
+p, a, div {
+    font-family: "Margarine", sans-serif;
+}
+
+.margarine-regular {
+  font-family: "Margarine", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}

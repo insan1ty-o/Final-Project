@@ -1,35 +1,77 @@
-body {
-    background-color: goldenrod;
-}
-
 #scratchoff {
-    border: 3px solid black;
-    background-color: rgb(7, 105, 7);
+    margin-top: 1vh;
+    justify-self: center;
+    border: 0.5vh solid white;
+    background-color: olive;
     height: 75vh;
-    width: 56vw;
+    width: 30vw;
     flex-direction: row;
-    border-radius: 0.7vh;
+
 }
 
 #topnums {
     display: flex;
     flex-direction: row;
-    justify-self: center;
+    justify-content: center;
+    margin-bottom: 4vh;
 }
 
 .col {
     display: flex;
     flex-direction: column;
+    width: 3vw;
+    margin-left: 1.47vw;
+}
+
+#gameborder {
+    display:flex;
+    flex-direction: column;
+    justify-self: center;
+    border: 0.5vh solid white;
+    background-color: white;
+    height: 44vh;
+    width:24vw;
+}
+
+#scratch-border {
+    display:flex;
+    flex-direction: column;
+    justify-self: center;
+    border: 0.5vh solid white;
+    height: 47.3vh;
+    width:25vw;
+}
+
+#tempart {
+    height: 21.5vh
+}
+
+#grid-container {
+    display:flex;
+    flex-direction: row;
+    width: 25vw;
 }
 
 .grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    border-radius: 1.5vh;
-    border: 0.5vw solid black;
-    height: 9vh;
-    width: 10vw;
-    margin: 1vh;
+    flex-direction: column;
+    background-color: rgb(255,255,255);
+    margin-top: 1.5vh;
+    height: 7vh;
+    width: 3vw;
+}
+
+.grid-unscratched {
+    background-color: gray;
+    opacity: 100%;
+}
+
+.grid-label {
+    margin: 0vh;
+}
+
+.grid-label-small {
+    margin: 0vh;
 }
