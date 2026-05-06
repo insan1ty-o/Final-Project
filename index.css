@@ -6,14 +6,19 @@
     height: 75vh;
     width: 30vw;
     flex-direction: row;
+}
 
+#headerbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #topnums {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 4vh;
+    margin-bottom: 1vh;
 }
 
 .col {
@@ -25,7 +30,7 @@
 
 #gameborder {
     display:flex;
-    position: absolute;
+    position:relative;
     flex-direction: column;
     justify-self: center;
     border: 0.5vh solid white;
@@ -36,19 +41,53 @@
 
 #scratch-border {
     display:flex;
+    position: relative;
     flex-direction: column;
     justify-self: center;
-    border: 0.5vh solid white;
     height: 47.3vh;
     width:25vw;
 }
 
 #tempart {
+    display:flex;
+    justify-content: center;
     height: 21.5vh
+}
+
+#logo {
+    height: 15.5vh;
+}
+
+.mainart {
+    position: absolute;
+    height: 19vh;
+    top: 11.5vh;
+}
+
+#bgcolor1 {
+    position: absolute;
+    top: 11vh;
+    height: 20.1vh;
+    width: 20.2vw;
+}
+
+#bgcolor2 {
+    position: absolute;
+    top: 10.3vh;
+    height: 21.4vh;
+    width: 20.6vw;
 }
 
 #grid-container {
     display:flex;
+    position:absolute;
+    flex-direction: row;
+    width: 25vw;
+}
+
+#unscratched-grid-container {
+    display:flex;
+    position: absolute;
     flex-direction: row;
     width: 25vw;
 }
@@ -72,10 +111,42 @@
     width: 3vw;
 }
 
+.grid-small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(255,255,255);
+    margin-top: 0.5vh;
+    margin-right: 0.5vw;
+    margin-left: 0.5vw;
+    height: 5vh;
+    width: 1vw;
+}
+
+.grid-unscratched-small {
+    background-color: gray;
+    opacity: 100%;
+    margin-top: 1.5vh;
+    height: 7vh;
+    width: 3vw;
+}
+
 .grid-label {
     margin: 0vh;
+    font-size: 1.8vh;
 }
 
 .grid-label-small {
     margin: 0vh;
+    font-size: 1.6vh;
+}
+
+#win-label {
+    display:flex;
+    justify-self: center;
+    -webkit-text-stroke: 0.05vw white;
+    color: goldenrod;
+    margin: 0vh;
+    font-size: 3vh;
 }

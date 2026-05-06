@@ -12,22 +12,29 @@
     <link rel="stylesheet" href="/pages/common/common.css">
 </head>
 <body>
-    <div id="headerbar">fishillionare</div>
+    <div id="headerbar">
+        <div>fishillionare</div>
+        <div>$0</div>
+        <div>new ticket</div>
+    </div>
     <div id="scratchoff">
-        <div id="tempart">art goes here</div>
+        <div id="tempart">
+            <img id="bgcolor2" class="mainart" src="resources/index/webFISHbg2.png"></img>
+            <img id="bgcolor1" class="mainart" src="resources/index/webFISHbg1.png"></img>
+            <img class="mainart" src="resources/index/webFISH.png"></img>
+            <img id="logo" src="resources/index/name.png"></img>
+        </div>
+        <p id="win-label">WIN UP TO $10000!</p>
         <div id="gameborder">
-            <div id="topnums">
-                <div id="grid">
-                    <p class="grid-label">num</p>
-                    <p class="grid-label">pronounce</p>
-                </div>
-            </div>
+            <div id="topnums"></div>
+            <div id="scratch-border">
                 <div id="grid-container"></div>
-            </div>   
+                <div id="unscratched-grid-container"></div>
+            </div>  
         </div>
     </div>
 </body>
     <script src="index.js"></script>
     <script>genTicket("ticket")</script>
-    <!--<script>genTicket("scratch")</script>-->
+    <script>genTicket("scratch")</script>
 </html>
