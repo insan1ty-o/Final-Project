@@ -25,6 +25,7 @@
 
 #gameborder {
     display:flex;
+    position: absolute;
     flex-direction: column;
     justify-self: center;
     border: 0.5vh solid white;
@@ -66,6 +67,9 @@
 .grid-unscratched {
     background-color: gray;
     opacity: 100%;
+    margin-top: 1.5vh;
+    height: 7vh;
+    width: 3vw;
 }
 
 .grid-label {

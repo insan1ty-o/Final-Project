@@ -1,5 +1,5 @@
 const values = ["$5.00", "$10.00", "$25.00", "$50.00", "$75.00", "$100.00"]
-function genTicket() {
+function genTicket(type) {
    const scratchticket = document.getElementById("grid-container");
    let gridid = 1;
    for (let i=0;i<5;i++) {
@@ -7,34 +7,37 @@ function genTicket() {
       col.className = "col";
       for (let g=0;g<4;g++) {
         const grid = document.createElement("div");
-        grid.className = "grid";
+        if (type == "ticket") {
+          grid.className = "grid";
+        } else {
+          grid.className = "grid-unscratched";
+        }
         grid.id = `grid${gridid}`
-        const number = document.createElement("p")
-        const pronounce = document.createElement("p")
-        const value = document.createElement("p")
-        //--------------------------------------------------
-        number.className = "grid-label"
-        pronounce.className = "grid-label"
-        value.className = "grid-label"
-        //--------------------------------------------------
-        number.textContent = "num"
-        pronounce.textContent = "JKL"
-        value.textContent = `${choice(values)}`
-        //--------------------------------------------------
-        grid.appendChild(number)
-        grid.appendChild(pronounce)
-        grid.appendChild(value)
-        //--------------------------------------------------
+        if (type = "ticket") {
+          const number = document.createElement("p")
+          const pronounce = document.createElement("p")
+          const value = document.createElement("p")
+          //--------------------------------------------------
+          number.className = "grid-label"
+          pronounce.className = "grid-label"
+          value.className = "grid-label"
+          //--------------------------------------------------
+          number.textContent = "num"
+          pronounce.textContent = "JKL"
+          value.textContent = `${choice(values)}`
+          //--------------------------------------------------
+          grid.appendChild(number)
+          grid.appendChild(pronounce)
+          grid.appendChild(value)
+          //--------------------------------------------------
+        } else {
+          grid.onmouseover=`${scratchTile()}`;
+        }
         col.appendChild(grid)
         gridid += 1;
      }
      scratchticket.appendChild(col);
    }
-   console.log(scratchticket)
-}
-
-function genScratch(){
-
 }
 
 function scratchTile(ele) {
