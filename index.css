@@ -11,11 +11,20 @@
 #headerbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 #topnums {
     display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1vh;
+}
+
+#unscratchednums {
+    display: flex;
+    position: absolute;
     flex-direction: row;
     justify-content: center;
     margin-bottom: 1vh;
@@ -30,22 +39,43 @@
 
 #gameborder {
     display:flex;
-    position:relative;
     flex-direction: column;
     justify-self: center;
     border: 0.5vh solid white;
-    background-color: white;
+    background-color: gray;
     height: 44vh;
     width:24vw;
 }
 
-#scratch-border {
+#scratchborder{
+    display:flex;
+    flex-direction: column;
+    justify-self: center;
+}
+
+#scratch-border1 {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+#scratch-border2 {
     display:flex;
     position: relative;
     flex-direction: column;
     justify-self: center;
     height: 47.3vh;
     width:25vw;
+}
+
+#namebar {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#titlelogo {
+    height: 5vh;
 }
 
 #tempart {
@@ -61,6 +91,7 @@
 .mainart {
     position: absolute;
     height: 19vh;
+    width: 19.8;
     top: 11.5vh;
 }
 
@@ -80,7 +111,6 @@
 
 #grid-container {
     display:flex;
-    position:absolute;
     flex-direction: row;
     width: 25vw;
 }
@@ -89,7 +119,7 @@
     display:flex;
     position: absolute;
     flex-direction: row;
-    width: 25vw;
+    width: vw;
 }
 
 .grid {
@@ -104,11 +134,18 @@
 }
 
 .grid-unscratched {
+    background-image: url(resources/index/scratchspot.png);
     background-color: gray;
-    opacity: 100%;
+    background-size: 6.6vh;
+    background-repeat: no-repeat;
+    opacity: 1;
     margin-top: 1.5vh;
     height: 7vh;
     width: 3vw;
+}
+
+#unscratched-grid1 {
+    opacity: 1;
 }
 
 .grid-small {
@@ -125,11 +162,17 @@
 }
 
 .grid-unscratched-small {
+    background-image: url(resources/index/scratchspot.png);
     background-color: gray;
-    opacity: 100%;
+    background-size: 2.6vh;
+    background-repeat: no-repeat;
+    margin-top: 0.5vh;
+    margin-right: 0.5vw;
+    margin-left: 0.5vw;
+    opacity: 1;
     margin-top: 1.5vh;
-    height: 7vh;
-    width: 3vw;
+    height: 5vh;
+    width: 1vw;
 }
 
 .grid-label {

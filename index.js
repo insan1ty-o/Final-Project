@@ -8,28 +8,44 @@ function genTicket(type) {
   } else {
     scratchticket = document.getElementById("unscratched-grid-container");
   }
-  const winningnums = document.getElementById("topnums");
+  let winningnums = undefined;
+  if (type == "ticket") {
+    winningnums = document.getElementById("topnums");
+  } else {
+    winningnums = document.getElementById("unscratchednums");
+    console.log(winningnums)
+  }
   let gridid = 1;
   for (let i=0;i<5;i++) {
     const col = document.createElement("div");
     col.className = "col";
+    const winnum = document.createElement("div");
     if (type == "ticket") {
-      const winnum = document.createElement("div")
       winnum.className = "grid-small";
-      const number = document.createElement("p")
-      const pronounce = document.createElement("p")
+    } else {
+      winnum.className = "grid-unscratched-small";
+    }
+    if (type == "ticket") {
+      const number = document.createElement("p");
+      const pronounce = document.createElement("p");
       //------------------------------------------------
       number.className = "grid-label-small";
       pronounce.className = "grid-label-small";
       //------------------------------------------------
-      //while unique (flag variable), keep rerolling number
+      //for i in each column, if fully unique, let go
+      //else notunique==true, reroll, recheck
       number.textContent = `${randint(1, 30)}`;
       pronounce.textContent = "JKL";
       //------------------------------------------------
-      winnum.appendChild(number)
-      winnum.appendChild(pronounce)
-      winningnums.appendChild(winnum)
-    }
+      winnum.appendChild(number);
+      winnum.appendChild(pronounce);
+      winningnums.appendChild(winnum);
+    } else {
+      winnum.className = "grid-unscratched-small";
+      winnum.addEventListener("mouseenter", (function () {awaitScratch=setTimeout(scratchTile(winnum), 2000)}));  
+      //scratch needs adjusting for winnum   
+    } 
+      winningnums.appendChild(winnum);   
     for (let g=0;g<4;g++) {
       const grid = document.createElement("div");
       if (type == "ticket") {
@@ -37,28 +53,29 @@ function genTicket(type) {
       } else {
         grid.className = "grid-unscratched";
       }
-      grid.id = `grid${gridid}`
       if (type == "ticket") {
-        const number = document.createElement("p")
-        const pronounce = document.createElement("p")
-        const value = document.createElement("p")
+        grid.id = `grid${gridid}`;
+        const number = document.createElement("p");
+        const pronounce = document.createElement("p");
+        const value = document.createElement("p");
         //--------------------------------------------------
-        number.className = "grid-label"
-        pronounce.className = "grid-label"
-        value.className = "grid-label"
+        number.className = "grid-label";
+        pronounce.className = "grid-label";
+        value.className = "grid-label";
         //--------------------------------------------------
         number.textContent = `${randint(1,30)}`;
-        pronounce.textContent = "JKL"
-        value.textContent = `${choice(values)}`
+        pronounce.textContent = "JKL";
+        value.textContent = `${choice(values)}`;
         //--------------------------------------------------
-        grid.appendChild(number)
-        grid.appendChild(pronounce)
-        grid.appendChild(value)
+        grid.appendChild(number);
+        grid.appendChild(pronounce);
+        grid.appendChild(value);
         //--------------------------------------------------
       } else {
-        grid.onmouseover=`${scratchTile(grid)}`;
+        grid.id = `unscratched-grid${gridid}`;
+        grid.addEventListener("mouseenter", (function () {const awaitScratch=setTimeout(scratchTile(grid), 2000)}))
       }
-      col.appendChild(grid)
+      col.appendChild(grid);
       gridid += 1;
     }
     scratchticket.appendChild(col);
@@ -66,9 +83,14 @@ function genTicket(type) {
 }
 
 function scratchTile(ele) {
-  console.log("scratch")
-  //console.log(ele.style.opacity)
-  //ele.style.opacity = Number(ele.style.opacity) - 20
+  //console.log("scratch") 
+  console.log(ele)
+  const eleid = document.getElementById(ele.id)
+  eleid.style.opacity = `${Number(eleid.style.opacity) - 0.1}`
+}
+
+function determineWin(){
+  const temp = ""
 }
 
 function randint(min, max){
@@ -76,6 +98,9 @@ function randint(min, max){
 }
 
 function choice(array) {
-  console.log(randint(0, array.length-1))
   return array[randint(0, array.length-1)]
+}
+
+function sleep(ms=0) {
+  return new Promise(resolve => setTimeout(resolve,ms))
 }
