@@ -11,7 +11,7 @@
 #headerbar {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #topnums {
@@ -28,6 +28,7 @@
     flex-direction: row;
     justify-content: center;
     margin-bottom: 1vh;
+    cursor:cell;
 }
 
 .col {
@@ -35,6 +36,7 @@
     flex-direction: column;
     width: 3vw;
     margin-left: 1.47vw;
+    cursor:cell;
 }
 
 #gameborder {
@@ -57,6 +59,7 @@
     display: flex;
     position: relative;
     justify-content: center;
+    cursor:cell;
 }
 
 #scratch-border2 {
@@ -66,6 +69,7 @@
     justify-self: center;
     height: 47.3vh;
     width:25vw;
+    cursor:cell;
 }
 
 #namebar {
@@ -119,7 +123,7 @@
     display:flex;
     position: absolute;
     flex-direction: row;
-    width: vw;
+    cursor:cell;
 }
 
 .grid {
@@ -138,14 +142,11 @@
     background-color: gray;
     background-size: 6.6vh;
     background-repeat: no-repeat;
-    opacity: 1;
+    opacity: 0;
     margin-top: 1.5vh;
     height: 7vh;
     width: 3vw;
-}
-
-#unscratched-grid1 {
-    opacity: 1;
+    cursor:cell;
 }
 
 .grid-small {
@@ -158,21 +159,23 @@
     margin-right: 0.5vw;
     margin-left: 0.5vw;
     height: 5vh;
-    width: 1vw;
+    width: 2vw;
 }
 
 .grid-unscratched-small {
-    background-image: url(resources/index/scratchspot.png);
+    background-image: url(resources/index/scratchspotlong.png);
     background-color: gray;
-    background-size: 2.6vh;
+    background-size: 3.5vh;
+    background-position: 0.2vw;
     background-repeat: no-repeat;
     margin-top: 0.5vh;
     margin-right: 0.5vw;
     margin-left: 0.5vw;
-    opacity: 1;
-    margin-top: 1.5vh;
+    opacity: 0;
+    margin-top: 0.5vh;
     height: 5vh;
-    width: 1vw;
+    width: 2vw;
+    cursor:cell;
 }
 
 .grid-label {

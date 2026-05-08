@@ -1,8 +1,13 @@
 const values = ["$5.00", "$10.00", "$25.00", "$50.00", "$75.00"]
 const rarevalues = ["$100.00", "$250.00", "500.00", "$750.00", "$1000.00"]
 const superrarevals = ["$2500", "$7500", "$10000"]
+const pronounciations = [] //this needs key:value stuff
+const winners = []
+const listednums = []
+
 function genTicket(type) {
   let scratchticket = undefined;
+  let numid = 1
   if (type == "ticket") {
     scratchticket = document.getElementById("grid-container");
   } else {
@@ -13,13 +18,13 @@ function genTicket(type) {
     winningnums = document.getElementById("topnums");
   } else {
     winningnums = document.getElementById("unscratchednums");
-    console.log(winningnums)
   }
   let gridid = 1;
   for (let i=0;i<5;i++) {
     const col = document.createElement("div");
     col.className = "col";
     const winnum = document.createElement("div");
+    
     if (type == "ticket") {
       winnum.className = "grid-small";
     } else {
@@ -32,20 +37,21 @@ function genTicket(type) {
       number.className = "grid-label-small";
       pronounce.className = "grid-label-small";
       //------------------------------------------------
-      //for i in each column, if fully unique, let go
-      //else notunique==true, reroll, recheck
       number.textContent = `${randint(1, 30)}`;
       pronounce.textContent = "JKL";
-      //------------------------------------------------
-      winnum.appendChild(number);
+      //------------------------------------------------  
+      winnum.appendChild(number)
       winnum.appendChild(pronounce);
       winningnums.appendChild(winnum);
     } else {
+      winnum.id = `numid-${numid}`;
       winnum.className = "grid-unscratched-small";
-      winnum.addEventListener("mouseenter", (function () {awaitScratch=setTimeout(scratchTile(winnum), 2000)}));  
-      //scratch needs adjusting for winnum   
-    } 
-      winningnums.appendChild(winnum);   
+      winnum.addEventListener("mouseenter", (function (){awaitScratch=setTimeout(scratchTile(winnum), 2000)}));
+      } 
+      numid = numid+ 1;
+      winningnums.appendChild(winnum); 
+    
+      
     for (let g=0;g<4;g++) {
       const grid = document.createElement("div");
       if (type == "ticket") {
@@ -73,23 +79,35 @@ function genTicket(type) {
         //--------------------------------------------------
       } else {
         grid.id = `unscratched-grid${gridid}`;
-        grid.addEventListener("mouseenter", (function () {const awaitScratch=setTimeout(scratchTile(grid), 2000)}))
+        grid.addEventListener("mouseover", (function () {const awaitScratch=setTimeout(scratchTile(grid), 2000)}))
       }
       col.appendChild(grid);
       gridid += 1;
-    }
     scratchticket.appendChild(col);
   }
-}
+}}
 
 function scratchTile(ele) {
-  //console.log("scratch") 
-  console.log(ele)
-  const eleid = document.getElementById(ele.id)
-  eleid.style.opacity = `${Number(eleid.style.opacity) - 0.1}`
+  const eleid = document.getElementById(ele.id);
+  const eleopacity = eleid.style.opacity;
+  if (eleid.className == "grid-unscratched") {
+    const gridclass = eleid.id.split("unscratched-")
+    const moneycounter = document.getElementById("money")
+    console.log(document.getElementById(gridclass[1]).textContent.split("$"))
+    moneycounter.textContent = `$${Number(document.getElementById(gridclass[1]).textContent.split("$")[1]) + Number(moneycounter.textContent.split("$")[1])}.00`
+  }
+  if (eleid.style.opacity == "") {
+    eleid.style.opacity = 1
+  } else if (eleid.style.opacity == "0") {
+    eleid.onmouseover = undefined;
+  } else {
+    eleid.style.opacity = `${eleid.style.opacity - 0.2}`
+    console.log(ele)
+  }
+  
 }
 
-function determineWin(){
+function calcWinnings(){
   const temp = ""
 }
 
