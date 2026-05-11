@@ -3,6 +3,43 @@
     height: 4.25vh;
 }
 
+#newticket {
+    display: flex;
+    background-color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1vh;
+    font-size: 1.8vh;
+    border: 0.3vh solid black;
+    height: 3.3vh;
+    width: auto;
+    cursor: pointer;
+}
+
+#money {
+    display: flex;
+    background-color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.9vh;
+    border-radius: 1vh;
+    border: 0.3vh solid black;
+    height: 3.3vh;
+    width: auto;
+}
+
+#namebar {
+    display: flex;
+    background-color: goldenrod;
+    justify-content: left;
+    font-size: 1.9vh;
+    align-items: center;
+    border-radius: 1vh;
+    border: 0.3vh solid black;
+    height: 3.3vh;
+    width: auto;
+}
+
 body {
     background-color: goldenrod;
     margin: 0;

@@ -16,10 +16,10 @@
     <div id="headerbar">
         <div id="namebar">
             <img id="titlelogo" src="resources/index/webFISH.png"></img>
-            <p class="grid-label">fishillionare</p>
+            <p>fishillionare</p>
         </div>
         <div id="money">$0.00</div>
-        <div id="ticketbutton">new ticket - $25.00</div>
+        <div id="newticket" onmousedown="newticket()">New Ticket - $25.00</div>
     </div>
     <div id="scratchoff">
         <div id="tempart">
@@ -42,6 +42,6 @@
     </div>
 </body>
     <script src="index.js"></script>
-    <script>genTicket("ticket")</script>
-    <script>genTicket("scratch")</script>
+    <script>genTicket("ticket", "n")</script>
+    <script>genTicket("scratch", "n")</script>
 </html>

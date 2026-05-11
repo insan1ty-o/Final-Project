@@ -90,12 +90,13 @@
 
 #logo {
     height: 15.5vh;
+    width: 25.5vw;
 }
 
 .mainart {
     position: absolute;
     height: 19vh;
-    width: 19.8;
+    width: 19.8vw;
     top: 11.5vh;
 }
 
@@ -171,7 +172,7 @@
     margin-top: 0.5vh;
     margin-right: 0.5vw;
     margin-left: 0.5vw;
-    opacity: 0;
+    opacity: 1;
     margin-top: 0.5vh;
     height: 5vh;
     width: 2vw;
@@ -185,7 +186,6 @@
 
 .grid-label-small {
     margin: 0vh;
-    font-size: 1.6vh;
 }
 
 #win-label {
