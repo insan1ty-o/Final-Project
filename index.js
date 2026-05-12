@@ -1,38 +1,34 @@
 const values = ["$5.00", "$10.00", "$25.00", "$50.00", "$75.00"]
 const rarevalues = ["$100.00", "$250.00", "$500.00", "$750.00", "$1000.00"]
 const superrarevals = ["$2500", "$7500", "$10000"]
-const pronounciations = [] //this needs key:value stuff
+const pronounciations = [] //this needs key:value stuff //<-------- forget about this
 const winners = []
 const listednums = []
 
-function genTicket(type, fresh) {
-  let scratchticket = undefined;
+function preloadData() {
+  const money = document.getElementById("money");
   if (sessionStorage.length == 0) {
     sessionStorage.setItem("money", document.getElementById("money").textContent)
+    sessionStorage.setItem("first", true)
+  } else {
+    money.textContent = sessionStorage.getItem("money")
   }
+}
+
+function genTicket(type, fresh) {
+  let scratchticket = undefined;
+  let winningnumbers = undefined;
   let numid = 1;
   if (type == "ticket") {
     scratchticket = document.getElementById("grid-container");
+    winningnumbers = document.getElementById("topnums")
   } else { 
     scratchticket = document.getElementById("unscratched-grid-container");
+    winningnumbers = document.getElementById("unscratchednums")
   }
-  if (fresh == "y") {
-    for (i=0;i<10;i++) {
-      console.log(document.getElementsByClassName("col")[i]);
-      if (type == "ticket") {
-        document.getElementsByClassName("grid-small")[i].remove();
-      } else {
-        document.getElementsByClassName("grid-unscratched-small")[i].remove();
-      }
-      document.getElementsByClassName("col")[i].remove();
-    }
-    while (winners.length > 0) {
-      winners.pop();
-    }
-    while (listednums.length > 0) {
-      listednums.pop();
-    }
-  }    
+  scratchticket.innerHTML = "";
+  winningnumbers.innerHTML = "";
+  
 
   let winningnums = undefined;
   if (type == "ticket") {
@@ -58,17 +54,17 @@ function genTicket(type, fresh) {
       number.className = "grid-label-small";
       pronounce.className = "grid-label-small";
       //------------------------------------------------
-      number.textContent = `${randint(1, 30)}`;
+      number.textContent = `${randint(1, 50)}`;
       unique = false;
       while (unique == false) {
         if (!winners.includes(number.textContent) || winners.length == 0) {
           unique = true;
           winners.push(number.textContent);
         } else {
-          number.textContent = `${randint(1, 30)}`;
+          number.textContent = `${randint(1, 50)}`;
         }
       }
-      pronounce.textContent = "JKL";
+      pronounce.textContent = "SVN";
       //------------------------------------------------  
       winnum.appendChild(number);
       winnum.appendChild(pronounce);
@@ -96,22 +92,23 @@ function genTicket(type, fresh) {
         number.className = "grid-label";
         pronounce.className = "grid-label";
         value.className = "grid-label";
+        value.id = "winningamount";
         //--------------------------------------------------
-        number.textContent = `${randint(1,30)}`;
+        number.textContent = `${randint(1,50)}`;
         unique = false;
         while (unique == false) {
           if (!listednums.includes(number.textContent) || listednums.length == 0) {
             unique = true;
             listednums.push(number.textContent);
           } else {
-            number.textContent = `${randint(1, 30)}`;
+            number.textContent = `${randint(1, 50)}`;
           }
         }
-        pronounce.textContent = "JKL";
-        const chanceval = randint(1,25)
-        if (chanceval <= 21) {
+        pronounce.textContent = "SVN";
+        const chanceval = randint(1,100)
+        if (chanceval <= 95) {
           value.textContent = `${choice(values)}`;
-        } else if (chanceval < 25 && chanceval > 20) {
+        } else if (chanceval > 95 && chanceval < 100) {
           value.textContent = `${choice(rarevalues)}`;
         } else {
           value.textContent = `${choice(superrarevals)}`;
@@ -137,15 +134,13 @@ function scratchTile(ele) {
   const eleopacity = eleid.style.opacity;
   const gridid = document.getElementById(`${eleid.id.split("unscratched-")[1]}`);
   const moneycounter = document.getElementById("money");
+  const eleidCList = eleid.classList
 
   if (eleid.style.opacity == "") {
     eleid.style.opacity = 0.8;
-  } else if (eleid.style.opacity == "0" && ! eleid.id == `numid-${eleid.id.split("numid-")[1]}`) {
-    if (! eleid.classList.contains("scratched")) {
+  } else if (eleid.style.opacity == 0 && eleidCList.contains("scratched") == false && eleidCList.contains("grid-unscratched-small") == false){
       eleid.classList.add("scratched");
-      console.log("added");
-    }
-    calcWinnings(gridid);
+      calcWinnings(gridid);
   } else if (Number(ele.style.opacity) > 0) {
     eleid.style.opacity = `${eleid.style.opacity - 0.2}`;
   }
@@ -153,22 +148,25 @@ function scratchTile(ele) {
 
 function calcWinnings(grid){
   const currentwinnings = sessionStorage.getItem("money")
-  if (winners.contains(grid.children[0])) {
-    sessionStorage.setItem("money", `$${Number(gridid.textContent.split("$")[1]) + Number(moneycounter.textContent.split("$")[1])}.00`)
+  const moneycounter = document.getElementById("money")
+  if (winners.includes(grid.children[0].textContent)) {
+    const equation = Number(grid.children[2].textContent.split("$")[1]) + Number(moneycounter.textContent.split("$")[1]);
+    sessionStorage.setItem("money", `$${equation}.00`);
+    moneycounter.textContent = `$${equation}.00`;
+    grid.style.color = "greenyellow"
   }
 }
 
 function newticket(){
   const money = document.getElementById("money");
-  money.textContent = `$${Number(money.textContent.split("$")[1])- 25}.00`;
+  const hint = document.getElementById("tickethint")
+  hint.style.visibility = "hidden"
+  money.textContent = `$${Number(money.textContent.split("$")[1])- 100}.00`;
+  sessionStorage.setItem("money", `${money.textContent}`)
+  winners.splice(0, winners.length)
+  listednums.splice(0, listednums.length)
   genTicket("ticket", "y");
   genTicket("scratch", "y");
-}
-
-function changeMoneyColor(money){
-  if (String(money)[0] == "-") {
-    money
-  }
 }
 
 function randint(min, max){

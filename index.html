@@ -19,8 +19,9 @@
             <p>fishillionare</p>
         </div>
         <div id="money">$0.00</div>
-        <div id="newticket" onmousedown="newticket()">New Ticket - $25.00</div>
+        <div id="newticket" onmousedown="newticket()">New Ticket - $100.00</div>
     </div>
+    <p class="grid-label" id="tickethint">^^^^ buy your first ticket</p>
     <div id="scratchoff">
         <div id="tempart">
             <img id="bgcolor2" class="mainart" src="resources/index/webFISHbg2.png"></img>
@@ -42,6 +43,6 @@
     </div>
 </body>
     <script src="index.js"></script>
-    <script>genTicket("ticket", "n")</script>
-    <script>genTicket("scratch", "n")</script>
+    <script>preloadData()</script>
+
 </html>
