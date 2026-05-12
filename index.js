@@ -7,24 +7,33 @@ const listednums = []
 
 function genTicket(type, fresh) {
   let scratchticket = undefined;
-  let numid = 1
+  if (sessionStorage.length == 0) {
+    sessionStorage.setItem("money", document.getElementById("money").textContent)
+  }
+  let numid = 1;
   if (type == "ticket") {
     scratchticket = document.getElementById("grid-container");
   } else { 
     scratchticket = document.getElementById("unscratched-grid-container");
   }
   if (fresh == "y") {
-    for (i=0;i<scratchticket.length;i++) {
-      console.log(scratchticket[i])
-      scratchticket.remove(scratchticket[i])
+    for (i=0;i<10;i++) {
+      console.log(document.getElementsByClassName("col")[i]);
+      if (type == "ticket") {
+        document.getElementsByClassName("grid-small")[i].remove();
+      } else {
+        document.getElementsByClassName("grid-unscratched-small")[i].remove();
+      }
+      document.getElementsByClassName("col")[i].remove();
     }
     while (winners.length > 0) {
-      winners.pop()
+      winners.pop();
     }
     while (listednums.length > 0) {
-      listednums.pop()
+      listednums.pop();
     }
-  }      
+  }    
+
   let winningnums = undefined;
   if (type == "ticket") {
     winningnums = document.getElementById("topnums");
@@ -132,25 +141,28 @@ function scratchTile(ele) {
   if (eleid.style.opacity == "") {
     eleid.style.opacity = 0.8;
   } else if (eleid.style.opacity == "0" && ! eleid.id == `numid-${eleid.id.split("numid-")[1]}`) {
+    if (! eleid.classList.contains("scratched")) {
+      eleid.classList.add("scratched");
+      console.log("added");
+    }
     calcWinnings(gridid);
-    moneycounter.textContent = `$${Number(gridid.textContent.split("$")[1]) + Number(moneycounter.textContent.split("$")[1])}.00`;
-    eleid.removeEventListener("mouseover", function () {const awaitScratch=setTimeout(scratchTile(grid), 2000)});
-  } else {
+  } else if (Number(ele.style.opacity) > 0) {
     eleid.style.opacity = `${eleid.style.opacity - 0.2}`;
-    console.log(ele);
   }
 }
 
-function calcWinnings(){
-  //session storage
-  const temp = "";
+function calcWinnings(grid){
+  const currentwinnings = sessionStorage.getItem("money")
+  if (winners.contains(grid.children[0])) {
+    sessionStorage.setItem("money", `$${Number(gridid.textContent.split("$")[1]) + Number(moneycounter.textContent.split("$")[1])}.00`)
+  }
 }
 
 function newticket(){
   const money = document.getElementById("money");
   money.textContent = `$${Number(money.textContent.split("$")[1])- 25}.00`;
-  genTicket("ticket", "y")
-  genTicket("scratch", "y")
+  genTicket("ticket", "y");
+  genTicket("scratch", "y");
 }
 
 function changeMoneyColor(money){
